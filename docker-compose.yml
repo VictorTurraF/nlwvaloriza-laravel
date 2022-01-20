@@ -29,8 +29,11 @@ services:
       SERVICE_NAME: mysql
     volumes:
       - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+      - db-data:/var/lib/mysql # Volume de dados do container
     networks:
       - nlwvaloriza
+    ports:
+      - "3309:3306"
 
   nginx:
     image: nginx:alpine
@@ -43,6 +46,21 @@ services:
       - ./docker-compose/nginx:/etc/nginx/conf.d/
     networks:
       - nlwvaloriza
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: nlwvaloriza-pma
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+    networks:
+      - nlwvaloriza
+
+volumes:
+  db-data:
 
 networks:
   nlwvaloriza:
