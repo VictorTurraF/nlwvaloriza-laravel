@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\TagController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/login', [LoginController::class, "authenticate"]);
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::resource('tags', TagController::class)
+        ->only([
+            'index',
+            'store',
+            'show'
+        ]);
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
