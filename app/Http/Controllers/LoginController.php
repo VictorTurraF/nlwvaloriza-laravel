@@ -24,11 +24,9 @@ class LoginController extends Controller
         if (Auth::guard()->attempt($credentials)) {
             $request->session()->regenerate();
 
-            return response()->json([
-                Auth::user()
-            ], 200);
+            return response()->json(Auth::user(), 200);
         }
 
-        return response()->json(['error' => 'Email e/ou senha incorretos'], 400);
+        return response()->json(['message' => 'Email e/ou senha incorretos'], 400);
     }
 }
