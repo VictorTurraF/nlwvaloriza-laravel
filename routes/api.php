@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComplimentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
@@ -27,6 +28,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         ]);
 
     Route::resource('users', UserController::class)
+        ->only([
+            'index',
+            'store',
+            'show'
+        ]);
+
+    Route::resource('compliments', ComplimentController::class)
         ->only([
             'index',
             'store',

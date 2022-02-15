@@ -15,7 +15,18 @@ class Compliment extends Model
         'receiver_user_id'
     ];
 
-    function tags() {
+    function tags()
+    {
         return $this->belongsToMany(Tag::class);
+    }
+
+    function author_user()
+    {
+        return $this->hasOne(User::class, 'id', 'sender_user_id');
+    }
+
+    function receiver_user()
+    {
+        return $this->hasOne(User::class, 'id', 'receiver_user_id');
     }
 }
