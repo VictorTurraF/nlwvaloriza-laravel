@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\TagResource;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class TagController extends Controller
 {
@@ -15,7 +16,12 @@ class TagController extends Controller
      */
     public function index()
     {
-        return TagResource::collection(Tag::paginate());
+
+        $tags = QueryBuilder::for(Tag::class)
+            ->allowedFilters(['name'])
+            ->paginate();
+
+        return TagResource::collection($tags);
     }
 
     /**
