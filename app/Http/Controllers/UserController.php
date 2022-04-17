@@ -24,7 +24,7 @@ class UserController extends Controller
 
         $userIsAdmin = Auth::user()->is_admin;
 
-        $shouldBeSimplified = $this->requestHasABooleanOrEmpryQueryStringName('simplified');
+        $shouldBeSimplified = $this->requestHasABooleanOrEmptyQueryStringName('simplified');
 
         if (!$userIsAdmin || $shouldBeSimplified) {
             return UserSimplifiedResource::collection($queryResult);
@@ -33,7 +33,7 @@ class UserController extends Controller
         return UserResource::collection($queryResult);
     }
 
-    private function requestHasABooleanOrEmpryQueryStringName($queryStringKey)
+    private function requestHasABooleanOrEmptyQueryStringName($queryStringKey)
     {
         return request()->boolean($queryStringKey) || request()->query($queryStringKey) === null;
     }
