@@ -22,3 +22,16 @@ Baco de dados estruturado e com relacionamentos de *um para muitos* e *muitos pa
 
 ![mysql-nlwvaloriza-laravel](https://user-images.githubusercontent.com/59932737/163728483-f7665ce8-6787-4556-a88d-4be6a72a834d.gif)
 
+## Funcionalidades básicas
+Listar vários items:
+![get-many-nlwvaloriza-laravel](https://user-images.githubusercontent.com/59932737/163728782-02f3b8c4-05a3-448a-943b-56d0d409073f.gif)
+
+Listar um item específico (por ID)
+![get-one-nlwvaloriza-laravel](https://user-images.githubusercontent.com/59932737/163728793-c25b1f85-dbb9-4ec0-85aa-83a14aeb4c58.gif)
+
+Criar um item
+![create-nlwvaloriza-laravel](https://user-images.githubusercontent.com/59932737/163728794-3affe45f-25a9-433c-9c1f-78142b0e03d2.gif)
+
+Criação de recursos com relacionamentos.
+![create-complex-nlwvaloriza-laravel](https://user-images.githubusercontent.com/59932737/163728936-c4e3c65a-c9d1-4a66-a5d5-2c94edbdfcbf.gif)
+
