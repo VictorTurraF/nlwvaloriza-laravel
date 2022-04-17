@@ -33,7 +33,21 @@ class ComplimentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'message' => ['required', 'max:255'],
+            'receiver_user_id' => ['required', 'exists:users,id'],
+            'tags' => ['array', 'exists:tags,id'],
+        ]);
+
+        $compliment = Compliment::create([
+            'message' => $request->message,
+            'receiver_user_id' => $request->receiver_user_id,
+            'sender_user_id' => Auth::user()->id,
+        ]);
+
+        $compliment->tags()->attach($request->tags);
+
+        return new ComplimentResource($compliment);
     }
 
     /**
