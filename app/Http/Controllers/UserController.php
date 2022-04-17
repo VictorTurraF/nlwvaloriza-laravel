@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\UserSimplifiedResource;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -21,11 +22,20 @@ class UserController extends Controller
     {
         $queryResult = User::paginate();
 
-        if (Auth::user()->is_admin) {
-            return UserResource::collection($queryResult);
+        $userIsAdmin = Auth::user()->is_admin;
+
+        $shouldBeSimplified = $this->requestHasABooleanOrEmpryQueryStringName('simplified');
+
+        if (!$userIsAdmin || $shouldBeSimplified) {
+            return UserSimplifiedResource::collection($queryResult);
         }
 
-        return new UserResource(User::find(Auth::user()->id));
+        return UserResource::collection($queryResult);
+    }
+
+    private function requestHasABooleanOrEmpryQueryStringName($queryStringKey)
+    {
+        return request()->boolean($queryStringKey) || request()->query($queryStringKey) === null;
     }
 
     /**
