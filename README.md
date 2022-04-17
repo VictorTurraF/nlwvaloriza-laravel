@@ -4,5 +4,11 @@
 Implementação utilizando Laravel Framework do projeto [NLW Valoriza](https://github.com/VictorTurraF/nlwvaloriza/) com o objetivo de conhecer o funcionamento básico do Laravel.
 
 ## Autenticação
-Implementada autenticação baseada em cookies (Cookie based authentication) utilizando o [Laravel Sactum](https://laravel.com/docs/8.x/sanctum#main-content) para armazenar os dados em sessão e com segurança.
+Implementada autenticação baseada em cookies (Cookie based authentication) utilizando o [Laravel Sactum](https://laravel.com/docs/8.x/sanctum#main-content) para armazenar os dados em sessão e com segurança. 
+
+O fluxo de autenticação consiste em duas etapas:
+- Obter o CSRF Token e o cookie de sessão temporário pela rota `/sanctum/csrf-cookie`
+- Autenticar com email e senha para obter o cookie de sessão definitivo pela rota `/api/login`.
+
+![auth-nlwvaloriza-laravel](https://user-images.githubusercontent.com/59932737/163727406-f1076ff6-2d02-41a7-b113-9e48843c511d.gif)
 
