@@ -12,3 +12,7 @@ O fluxo de autenticação consiste em duas etapas:
 
 ![auth-nlwvaloriza-laravel](https://user-images.githubusercontent.com/59932737/163727406-f1076ff6-2d02-41a7-b113-9e48843c511d.gif)
 
+## Docker/Docker Compose
+Implementada configuração de ambiente para laravel utilizando `Dockerfile` e `docker-compose.yml` para desenvolvimento.
+
+![docker-nlwvaloriza-laravel](https://user-images.githubusercontent.com/59932737/163728039-7e646c1b-d5d1-4fb3-b5fd-80661b9a53a2.gif)
