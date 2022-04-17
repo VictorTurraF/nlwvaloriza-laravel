@@ -17,11 +17,16 @@ class ComplimentController extends Controller
     public function index()
     {
         if (Auth::user()->is_admin) {
-            return ComplimentResource::collection(Compliment::paginate());
+            return ComplimentResource::collection(
+                Compliment::orderBy('created_at', 'desc')
+                    ->paginate()
+            );
         }
 
         return ComplimentResource::collection(
-            Compliment::where('receiver_user_id', Auth::user()->id)->paginate()
+            Compliment::where('receiver_user_id', Auth::user()->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate()
         );
     }
 
