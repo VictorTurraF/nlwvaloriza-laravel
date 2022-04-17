@@ -16,3 +16,9 @@ O fluxo de autenticação consiste em duas etapas:
 Implementada configuração de ambiente para laravel utilizando `Dockerfile` e `docker-compose.yml` para desenvolvimento.
 
 ![docker-nlwvaloriza-laravel](https://user-images.githubusercontent.com/59932737/163728039-7e646c1b-d5d1-4fb3-b5fd-80661b9a53a2.gif)
+
+## Persistência de Dados com MySql
+Baco de dados estruturado e com relacionamentos de *um para muitos* e *muitos para muitos*.
+
+![mysql-nlwvaloriza-laravel](https://user-images.githubusercontent.com/59932737/163728483-f7665ce8-6787-4556-a88d-4be6a72a834d.gif)
+
