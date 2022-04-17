@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class UserController extends Controller
 {
@@ -20,7 +21,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $queryResult = User::paginate();
+        $queryResult = QueryBuilder::for(User::class)
+            ->allowedFilters(['name', 'email'])
+            ->paginate();
 
         $userIsAdmin = Auth::user()->is_admin;
 
@@ -35,7 +38,11 @@ class UserController extends Controller
 
     private function requestHasABooleanOrEmptyQueryStringName($queryStringKey)
     {
-        return request()->boolean($queryStringKey) || request()->query($queryStringKey) === null;
+        return request()->boolean($queryStringKey)
+            || (
+                request()->has($queryStringKey)
+                && request()->query($queryStringKey) === null
+            );
     }
 
     /**
